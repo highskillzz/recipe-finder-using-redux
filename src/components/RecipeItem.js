@@ -9,7 +9,7 @@ class RecipeItem extends Component {
       favourite: false
     };
   }
-    favourite(recipe) {
+  favourite(recipe) {
     this.props.favouriteRecipe(recipe);
     this.setState({ favourite: true });
   }
@@ -17,26 +17,24 @@ class RecipeItem extends Component {
   render() {
     let { recipe } = this.props;
 
-    
-
     return (
       <div>
         <div className="recipe-item">
-          {this.state.favourite ? (
-            <div
-              className="star"
-            >
-              &#9733;{" "}
-            </div>
+          {this.props.favouriteButton ? (
+            this.state.favourite ? (
+              <div className="star">&#9733; </div>
+            ) : (
+              <div
+                className="star"
+                onClick={() => {
+                  this.favourite(recipe);
+                }}
+              >
+                &#9734;{" "}
+              </div>
+            )
           ) : (
-            <div
-              className="star"
-              onClick={() => {
-                this.favourite(recipe);
-              }}
-            >
-              &#9734;{" "}
-            </div>
+            <div />
           )}
 
           <div className="recipe-text">
